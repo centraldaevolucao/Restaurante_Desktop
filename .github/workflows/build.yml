@@ -1,8 +1,12 @@
-# Compila Windows e Linux a cada tag vX.Y.Z e anexa os arquivos à release.
+# Compila Windows e Linux. Roda: ao enviar para a branch main, ao criar uma tag vX.Y.Z (e publica a release) e manualmente (aba Actions → build → Run workflow).
 name: build
 on:
   push:
+    branches: [main]
     tags: ["v*"]
+  workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   windows:
     runs-on: windows-latest
@@ -11,10 +15,14 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install pyinstaller
-      - run: empacotar\build-windows.bat
+      - name: Gerar Restaurante.exe
+        run: empacotar\build-windows.bat
         shell: cmd
-      - run: choco install innosetup -y
-      - run: iscc empacotar\instalador.iss
+      - name: Gerar instalador
+        run: |
+          choco install innosetup -y --no-progress
+          & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" empacotar\instalador.iss
+        shell: pwsh
       - uses: actions/upload-artifact@v4
         with: { name: windows, path: saida/*.exe }
   linux:
@@ -27,3 +35,12 @@ jobs:
       - run: bash empacotar/build-linux.sh
       - uses: actions/upload-artifact@v4
         with: { name: linux, path: "*.tar.gz" }
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [windows, linux]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with: { path: pacotes }
+      - uses: softprops/action-gh-release@v2
+        with: { files: "pacotes/**/*" }

@@ -1,4 +1,4 @@
-> **Versão atual do sistema: Restaurante-desktop 1.1.1 (núcleo 2.30.1)** — este arquivo é renomeado e atualizado a cada versão (seções numeradas abaixo, da mais antiga à mais nova).
+> **Versão atual do sistema: Restaurante-desktop 1.1.2 (núcleo 2.30.1)** — este arquivo é renomeado e atualizado a cada versão (seções numeradas abaixo, da mais antiga à mais nova).
 
 # Restaurante Desktop — Windows e Linux
 
@@ -24,7 +24,7 @@ O mesmo sistema do app Android (Restaurante/Comandas) rodando no computador. Usa
 1. Sincronize o núcleo com o Android: `python empacotar/sincronizar_nucleo.py <pasta do comandas-apk>`.
 2. **Windows:** `empacotar\build-windows.bat` gera `dist\Restaurante\Restaurante.exe`; com o Inno Setup, `iscc empacotar\instalador.iss` gera o instalador (libera a porta 3000–3029 no firewall para a rede privada).
 3. **Linux:** `bash empacotar/build-linux.sh` gera `Restaurante-desktop_v1.0.0-linux-x64.tar.gz`.
-4. Ou envie a tag `v1.0.0` ao GitHub: o fluxo `.github/workflows/build.yml` compila Windows e Linux sozinho.
+4. Ou envie a tag `vX.Y.Z` ao GitHub: o fluxo `.github/workflows/build.yml` compila Windows e Linux sozinho (também roda a cada envio para a main e manualmente em Actions → build → Run workflow) e, na tag, publica a release com o instalador e o pacote Linux.
 Nada é assinado digitalmente: o Windows pode mostrar o aviso "editor desconhecido" até haver certificado.
 
 ## Limites desta versão
@@ -48,3 +48,6 @@ Nada é assinado digitalmente: o Windows pode mostrar o aviso "editor desconheci
 
 ### 3. v1.1.1 — Cardápio QR para todos
 - Núcleo 2.30.1: o cardápio digital por QR é bônus de todos, inclusive do plano grátis.
+
+### 4. v1.1.2 — Fluxo do GitHub Actions
+- O build agora roda ao enviar para a main, ao criar tag e **manualmente** (Actions → build → Run workflow); na tag, publica a Release com o instalador Windows e o pacote Linux.
