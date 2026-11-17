@@ -1,4 +1,4 @@
-> **Versão atual do sistema: Restaurante-desktop 1.1.3 (núcleo 2.30.1)** — este arquivo é renomeado e atualizado a cada versão (seções numeradas abaixo, da mais antiga à mais nova).
+> **Versão atual do sistema: Restaurante-desktop 1.1.4 (núcleo 2.30.2)** — este arquivo é renomeado e atualizado a cada versão (seções numeradas abaixo, da mais antiga à mais nova).
 
 # Restaurante Desktop — Windows e Linux
 
@@ -56,3 +56,6 @@ Nada é assinado digitalmente: o Windows pode mostrar o aviso "editor desconheci
 - O fluxo agora chama `python -m PyInstaller` (o `py -3` podia usar outro Python sem o PyInstaller), confere se o `Restaurante.exe` foi gerado e localiza o Inno Setup automaticamente.
 - O PyInstaller passa a analisar o núcleo (`server`, `licenca`, `backup_comandas`, `impressao`), para o programa empacotado não faltar módulos.
 - `instalador.iss` salvo em UTF-8 com BOM (acentos).
+
+### 6. v1.1.4 — Compartilhar backup
+- Núcleo 2.30.2: o botão de compartilhar do backup usa o compartilhamento do sistema quando existe; senão baixa o arquivo e avisa a pasta Downloads.
