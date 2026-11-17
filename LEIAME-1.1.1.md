@@ -1,4 +1,4 @@
-> **Versão atual do sistema: Restaurante-desktop 1.1.0 (núcleo 2.30.0)** — este arquivo é renomeado e atualizado a cada versão (seções numeradas abaixo, da mais antiga à mais nova).
+> **Versão atual do sistema: Restaurante-desktop 1.1.1 (núcleo 2.30.1)** — este arquivo é renomeado e atualizado a cada versão (seções numeradas abaixo, da mais antiga à mais nova).
 
 # Restaurante Desktop — Windows e Linux
 
@@ -45,3 +45,6 @@ Nada é assinado digitalmente: o Windows pode mostrar o aviso "editor desconheci
 - Em Impressoras → "Adicionar impressora de rede (IP)", informe IP e porta; escolha e toque em "Imprimir teste".
 - **Linux/USB:** o usuário precisa de permissão no dispositivo (`/dev/usb/lp0`, normalmente grupo `lp`); ou instale a impressora no CUPS e use a opção "(CUPS)".
 - Núcleo 2.30.0.
+
+### 3. v1.1.1 — Cardápio QR para todos
+- Núcleo 2.30.1: o cardápio digital por QR é bônus de todos, inclusive do plano grátis.
