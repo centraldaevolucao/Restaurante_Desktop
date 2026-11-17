@@ -8,7 +8,7 @@ raiz = Path(__file__).resolve().parent.parent
 apk = Path(sys.argv[1]).resolve()
 py = apk / "app/src/main/python"
 destino = raiz / "nucleo"
-for f in ("server.py", "licenca.py", "backup_comandas.py"):
+for f in ("server.py", "licenca.py", "backup_comandas.py", "impressao.py"):
     shutil.copy2(py / f, destino / f)
 if (destino / "public").exists():
     shutil.rmtree(destino / "public")

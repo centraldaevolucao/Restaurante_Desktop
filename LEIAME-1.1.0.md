@@ -1,4 +1,4 @@
-> **Versão atual do sistema: Restaurante-desktop 1.0.0 (núcleo 2.29.0)** — este arquivo é renomeado e atualizado a cada versão (seções numeradas abaixo, da mais antiga à mais nova).
+> **Versão atual do sistema: Restaurante-desktop 1.1.0 (núcleo 2.30.0)** — este arquivo é renomeado e atualizado a cada versão (seções numeradas abaixo, da mais antiga à mais nova).
 
 # Restaurante Desktop — Windows e Linux
 
@@ -28,8 +28,8 @@ O mesmo sistema do app Android (Restaurante/Comandas) rodando no computador. Usa
 Nada é assinado digitalmente: o Windows pode mostrar o aviso "editor desconhecido" até haver certificado.
 
 ## Limites desta versão
-- Não testado em Windows nem em Linux com impressora real; testado aqui em Linux (servidor, licença, dados e ID do equipamento).
-- Impressão: usa a do navegador/sistema (o diálogo de impressão). Impressão térmica direta (USB/rede) e Bluetooth ficam para uma versão futura.
+- Não testado em Windows nem com impressora real; testado aqui em Linux (servidor, licença, dados, ID do equipamento e envio ESC/POS para uma impressora de rede simulada).
+- Impressão: padrão pelo diálogo do sistema; térmica direta (rede, USB, serial, impressora do sistema) em Configurações → Impressoras. Bluetooth fica só no Android.
 - Compartilhar/WhatsApp: abre o WhatsApp Web / baixa o arquivo, sem o menu "compartilhar" do Android.
 - Sem ícone na bandeja nem atualização automática (planejados).
 
@@ -39,3 +39,9 @@ Nada é assinado digitalmente: o Windows pode mostrar o aviso "editor desconheci
 - Pasta de dados do sistema, ID do equipamento por computador (licença presa a ele), link externo opcional (`--tunel`).
 - Scripts de empacotamento: PyInstaller (Windows e Linux), instalador Inno Setup com regra de firewall e fluxo do GitHub Actions.
 - Sincronizador do núcleo para manter Android e Desktop no mesmo código.
+
+### 2. v1.1.0 — Impressora térmica direta
+- Impressoras de **rede (IP:9100)**, **USB**, **serial** e **instaladas no sistema** (Windows: fila RAW; Linux: CUPS `lp -o raw`) com a mesma tela e o mesmo layout (ESC/POS, acentos, QR, logo) usados na Bluetooth do Android.
+- Em Impressoras → "Adicionar impressora de rede (IP)", informe IP e porta; escolha e toque em "Imprimir teste".
+- **Linux/USB:** o usuário precisa de permissão no dispositivo (`/dev/usb/lp0`, normalmente grupo `lp`); ou instale a impressora no CUPS e use a opção "(CUPS)".
+- Núcleo 2.30.0.
