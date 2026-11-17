@@ -1,4 +1,4 @@
-> **Versão atual do sistema: Restaurante-desktop 1.1.2 (núcleo 2.30.1)** — este arquivo é renomeado e atualizado a cada versão (seções numeradas abaixo, da mais antiga à mais nova).
+> **Versão atual do sistema: Restaurante-desktop 1.1.3 (núcleo 2.30.1)** — este arquivo é renomeado e atualizado a cada versão (seções numeradas abaixo, da mais antiga à mais nova).
 
 # Restaurante Desktop — Windows e Linux
 
@@ -51,3 +51,8 @@ Nada é assinado digitalmente: o Windows pode mostrar o aviso "editor desconheci
 
 ### 4. v1.1.2 — Fluxo do GitHub Actions
 - O build agora roda ao enviar para a main, ao criar tag e **manualmente** (Actions → build → Run workflow); na tag, publica a Release com o instalador Windows e o pacote Linux.
+
+### 5. v1.1.3 — Correção do build do Windows
+- O fluxo agora chama `python -m PyInstaller` (o `py -3` podia usar outro Python sem o PyInstaller), confere se o `Restaurante.exe` foi gerado e localiza o Inno Setup automaticamente.
+- O PyInstaller passa a analisar o núcleo (`server`, `licenca`, `backup_comandas`, `impressao`), para o programa empacotado não faltar módulos.
+- `instalador.iss` salvo em UTF-8 com BOM (acentos).

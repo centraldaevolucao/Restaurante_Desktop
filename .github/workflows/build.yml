@@ -14,14 +14,22 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - run: pip install pyinstaller
+      - run: python -m pip install pyinstaller
       - name: Gerar Restaurante.exe
-        run: empacotar\build-windows.bat
-        shell: cmd
+        run: python -m PyInstaller --noconfirm --clean --name Restaurante --add-data "nucleo;nucleo" --paths nucleo --hidden-import server --hidden-import licenca --hidden-import backup_comandas --hidden-import impressao --hidden-import sqlite3 restaurante_desktop.py
+        shell: pwsh
+      - name: Conferir saída
+        run: |
+          if (-not (Test-Path dist\Restaurante\Restaurante.exe)) { throw "Restaurante.exe não foi gerado" }
+          Get-ChildItem dist\Restaurante | Select-Object -First 5
+        shell: pwsh
       - name: Gerar instalador
         run: |
           choco install innosetup -y --no-progress
-          & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" empacotar\instalador.iss
+          $iscc = Get-ChildItem "C:\Program Files*\Inno Setup*\ISCC.exe" | Select-Object -First 1
+          if (-not $iscc) { throw "ISCC.exe não encontrado" }
+          & $iscc.FullName empacotar\instalador.iss
+          if ($LASTEXITCODE -ne 0) { throw "Inno Setup falhou ($LASTEXITCODE)" }
         shell: pwsh
       - uses: actions/upload-artifact@v4
         with: { name: windows, path: saida/*.exe }
