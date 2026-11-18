@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Restaurante Desktop 1.1.4 — Windows e Linux.
+"""Restaurante Desktop 1.2.0 — Windows e Linux.
 
 Sobe o MESMO servidor do app Android (nucleo/server.py) e abre o sistema numa janela do navegador.
 Dados, backup e licença seguem as mesmas regras do celular (licença presa a este computador).
@@ -7,14 +7,14 @@ Dados, backup e licença seguem as mesmas regras do celular (licença presa a es
 Uso:
     python restaurante_desktop.py            abre o sistema (porta 3000; se ocupada, a próxima livre)
     python restaurante_desktop.py --sem-janela   só o servidor (modo servidor/headless)
-    python restaurante_desktop.py --tunel    também gera o link externo (precisa do cloudflared)
+    python restaurante_desktop.py --sem-tunel   não gera o link externo (por padrão ele é criado sozinho)
     python restaurante_desktop.py --pasta X  guarda os dados em X (padrão: pasta do sistema)
 """
 import os, sys, re, json, time, uuid, shutil, socket, subprocess, threading, webbrowser, hashlib
 from pathlib import Path
 import urllib.request
 
-VERSAO_DESKTOP = "1.1.4"
+VERSAO_DESKTOP = "1.2.0"
 NOME = "Restaurante"
 
 
@@ -139,37 +139,13 @@ def abrir_janela(url):
     webbrowser.open(url)
 
 
-def iniciar_tunel(raiz, porta):
-    """Link externo temporário (Cloudflare), igual ao do Android: grava tunnel_url.txt, que o servidor já lê."""
-    exe = shutil.which("cloudflared") or str(pasta_app() / ("cloudflared.exe" if os.name == "nt" else "cloudflared"))
-    if not Path(exe).exists() and not shutil.which(exe):
-        print("  (cloudflared não encontrado: o link externo fica desligado. Veja o LEIAME.)")
-        return None
-    arq = raiz / "tunnel_url.txt"
-    try:
-        arq.unlink()
-    except OSError:
-        pass
-    proc = subprocess.Popen([exe, "tunnel", "--url", "http://127.0.0.1:%d" % porta, "--no-autoupdate"],
-                            stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
-
-    def ler():
-        for linha in proc.stdout:
-            m = re.search(r"https://[a-z0-9-]+\.trycloudflare\.com", linha)
-            if m:
-                arq.write_text(m.group(0))
-                print("  Link externo:", m.group(0))
-    threading.Thread(target=ler, daemon=True).start()
-    return proc
-
-
 def main(argv):
     if sys.stdout is None or sys.stderr is None:      # sem console: registra num arquivo em vez de falhar
         log = open(pasta_dados() / "restaurante.log", "a", encoding="utf-8", buffering=1) if pasta_dados().is_dir() else open(os.devnull, "w")
         sys.stdout = sys.stdout or log
         sys.stderr = sys.stderr or log
     sem_janela = "--sem-janela" in argv
-    com_tunel = "--tunel" in argv
+    com_tunel = "--sem-tunel" not in argv and os.environ.get("RESTAURANTE_SEM_TUNEL") != "1"
     forcada = argv[argv.index("--pasta") + 1] if "--pasta" in argv and argv.index("--pasta") + 1 < len(argv) else None
     nucleo = pasta_app() / "nucleo"
     if not (nucleo / "server.py").is_file():          # rodando direto da pasta do projeto
@@ -204,7 +180,14 @@ def main(argv):
     except Exception:
         pass
     print("  ID do equipamento (licença): %s" % server.LIC.instalacao_id)
-    tunel = iniciar_tunel(raiz, porta) if com_tunel else None
+    if com_tunel:                                    # link externo automático (baixa o cloudflared sozinho na 1ª vez)
+        try:
+            import tunel
+            tunel.init(raiz, porta)
+            tunel.iniciar()
+            print("  Link externo: sendo criado (aparece em QR Codes quando ficar pronto)…")
+        except Exception as e:
+            print("  (link externo indisponível: %s)" % e)
     if not sem_janela:
         abrir_janela("http://localhost:%d/" % porta)
     print("Feche esta janela ou pressione Ctrl+C para encerrar o servidor.")
@@ -214,8 +197,11 @@ def main(argv):
     except KeyboardInterrupt:
         pass
     finally:
-        if tunel:
-            tunel.terminate()
+        if com_tunel:
+            try:
+                tunel.parar()
+            except Exception:
+                pass
         srv.shutdown()
     return 0
 

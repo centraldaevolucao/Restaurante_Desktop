@@ -16,7 +16,7 @@ jobs:
         with: { python-version: "3.12" }
       - run: python -m pip install pyinstaller
       - name: Gerar Restaurante.exe
-        run: python -m PyInstaller --noconfirm --clean --name Restaurante --add-data "nucleo;nucleo" --paths nucleo --hidden-import server --hidden-import licenca --hidden-import backup_comandas --hidden-import impressao --hidden-import sqlite3 restaurante_desktop.py
+        run: python -m PyInstaller --noconfirm --clean --name Restaurante --add-data "nucleo;nucleo" --paths nucleo --hidden-import server --hidden-import licenca --hidden-import backup_comandas --hidden-import impressao --hidden-import tunel --hidden-import sqlite3 restaurante_desktop.py
         shell: pwsh
       - name: Conferir saída
         run: |

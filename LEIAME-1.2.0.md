@@ -1,4 +1,4 @@
-> **Versão atual do sistema: Restaurante-desktop 1.1.4 (núcleo 2.30.2)** — este arquivo é renomeado e atualizado a cada versão (seções numeradas abaixo, da mais antiga à mais nova).
+> **Versão atual do sistema: Restaurante-desktop 1.2.0 (núcleo 2.31.0)** — este arquivo é renomeado e atualizado a cada versão (seções numeradas abaixo, da mais antiga à mais nova).
 
 # Restaurante Desktop — Windows e Linux
 
@@ -9,7 +9,7 @@ O mesmo sistema do app Android (Restaurante/Comandas) rodando no computador. Usa
 - **Linux:** `./iniciar.sh` (Python 3 já vem na maioria das distribuições).
 - O sistema abre numa janela própria (Edge/Chrome/Chromium) ou, se não houver, no navegador padrão.
 - Os celulares e garçons da mesma rede acessam o PC pelo endereço mostrado na tela preta (`http://IP-do-PC:3000`), como acessam o aparelho servidor hoje. **Deixe a janela preta aberta** enquanto o sistema estiver em uso.
-- Opções: `--sem-janela` (só o servidor), `--tunel` (link externo, precisa do `cloudflared`), `--pasta X` (guardar os dados em outra pasta).
+- Opções: `--sem-janela` (só o servidor), `--sem-tunel` (não gerar o link externo; por padrão ele é criado sozinho), `--pasta X` (guardar os dados em outra pasta).
 
 ## Onde ficam os dados
 - Windows: `%APPDATA%\Restaurante` · Linux: `~/.local/share/restaurante`
@@ -59,3 +59,9 @@ Nada é assinado digitalmente: o Windows pode mostrar o aviso "editor desconheci
 
 ### 6. v1.1.4 — Compartilhar backup
 - Núcleo 2.30.2: o botão de compartilhar do backup usa o compartilhamento do sistema quando existe; senão baixa o arquivo e avisa a pasta Downloads.
+
+### 7. v1.2.0 — Link externo automático
+- Ao abrir, o programa **gera o link externo sozinho**: baixa o cloudflared na primeira vez (precisa de internet nesse momento) e cria o endereço `https://….trycloudflare.com`, que aparece em QR Codes e é usado nos QR Codes do cardápio. Nada para instalar.
+- Opção `--sem-tunel` desliga o link automático. O link muda a cada abertura (é temporário).
+- Ao baixar, a conexão é HTTPS direto do GitHub oficial da Cloudflare; o antivírus do Windows pode pedir confirmação na primeira execução do cloudflared.
+- Núcleo 2.31.0.
