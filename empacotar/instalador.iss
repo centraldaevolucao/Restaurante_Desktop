@@ -1,11 +1,11 @@
 ﻿; Inno Setup — instalador do Restaurante Desktop (Windows). Compile com:  iscc empacotar\instalador.iss
 [Setup]
 AppName=Restaurante
-AppVersion=1.3.3
+AppVersion=1.3.4
 AppPublisher=Central da Evolução
 DefaultDirName={autopf}\Restaurante
 DefaultGroupName=Restaurante
-OutputBaseFilename=Restaurante-desktop_v1.3.3-setup
+OutputBaseFilename=Restaurante-desktop_v1.3.4-setup
 OutputDir=..\saida
 Compression=lzma2
 SolidCompression=yes
