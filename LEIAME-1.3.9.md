@@ -1,4 +1,4 @@
-> **Versão atual do sistema: Restaurante-desktop 1.3.8 (núcleo 2.32.8)** — este arquivo é renomeado e atualizado a cada versão (seções numeradas abaixo, da mais antiga à mais nova).
+> **Versão atual do sistema: Restaurante-desktop 1.3.9 (núcleo 2.32.8)** — este arquivo é renomeado e atualizado a cada versão (seções numeradas abaixo, da mais antiga à mais nova).
 
 # Restaurante Desktop — Windows e Linux
 
@@ -66,7 +66,7 @@ Nada é assinado digitalmente: o Windows pode mostrar o aviso "editor desconheci
 - Ao baixar, a conexão é HTTPS direto do GitHub oficial da Cloudflare; o antivírus do Windows pode pedir confirmação na primeira execução do cloudflared.
 - Núcleo 2.31.0.
 
-### 8. v1.3.8 — Núcleo 2.32.8 (impressão A4, recibo em formato de nota, revisão LGPD/CDC)
+### 8. v1.3.9 — Núcleo 2.32.8 (impressão A4, recibo em formato de nota, revisão LGPD/CDC)
 - **Comanda e recibo:** campo "Imprimir em" — **Cupom** (padrão) ou **A4**; cadastro de impressoras A4 em Impressoras. No Windows/Linux a folha A4 sai pela janela de impressão do sistema, onde você escolhe a impressora.
 - **Recibo A4 em formato de nota** (sem valor fiscal), com **QR Pix** enquanto aguarda pagamento e **várias páginas** quando necessário.
 - **Termos, Privacidade, Reembolso e Créditos**, aceite registrado, "Privacidade e meus dados", senhas com hash e retenção automática. Detalhes em `CONFORMIDADE-LGPD-CDC.md` do app Android (mesmo núcleo).
@@ -80,3 +80,6 @@ Nada é assinado digitalmente: o Windows pode mostrar o aviso "editor desconheci
 - Núcleo 2.32.8: recibo simples liberado ao finalizar a venda; A4 sem impressora cadastrada não bloqueia a visualização.
 - Núcleo 2.32.8: recibo simples com CPF/CNPJ preenchidos e cidade/UF pelo GPS.
 - Núcleo 2.32.8: recibo simples busca CPF/CNPJ só nos cadastros (sem campo de preenchimento na tela).
+
+## Versão 1.3.9
+- Núcleo 2.32.9: chat do suporte com novas seções (layouts de impressão, recibo A4/simples, Empresa, Pendências, privacidade).
