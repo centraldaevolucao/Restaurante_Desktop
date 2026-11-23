@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Restaurante Desktop 1.3.9 — Windows e Linux.
+"""Restaurante Desktop 1.3.10 — Windows e Linux.
 
 Sobe o MESMO servidor do app Android (nucleo/server.py) e abre o sistema numa janela do navegador.
 Dados, backup e licença seguem as mesmas regras do celular (licença presa a este computador).
@@ -14,7 +14,7 @@ import os, sys, re, json, time, uuid, shutil, socket, subprocess, threading, web
 from pathlib import Path
 import urllib.request
 
-VERSAO_DESKTOP = "1.3.9"
+VERSAO_DESKTOP = "1.3.10"
 NOME = "Restaurante"
 
 
