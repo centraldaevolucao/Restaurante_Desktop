@@ -3,6 +3,6 @@
 set -e
 cd "$(dirname "$0")/.."
 python3 -m PyInstaller --noconfirm --clean --name Restaurante \
-  --add-data "nucleo:nucleo" --paths nucleo --hidden-import server --hidden-import licenca --hidden-import backup_comandas --hidden-import impressao --hidden-import tunel --hidden-import sqlite3 restaurante_desktop.py
-tar -czf Restaurante-desktop_v1.3.11-linux-x64.tar.gz -C dist Restaurante
-echo "Pronto: Restaurante-desktop_v1.3.11-linux-x64.tar.gz"
+  --add-data "nucleo:nucleo" --paths nucleo --hidden-import server --hidden-import licenca --hidden-import backup_comandas --hidden-import impressao --hidden-import tunel --hidden-import cartao --hidden-import sqlite3 restaurante_desktop.py
+tar -czf Restaurante-desktop_v1.4.0-linux-x64.tar.gz -C dist Restaurante
+echo "Pronto: Restaurante-desktop_v1.4.0-linux-x64.tar.gz"
