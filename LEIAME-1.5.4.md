@@ -1,4 +1,4 @@
-> **Versão atual do sistema: Restaurante-desktop 1.5.3 (núcleo 2.32.8)** — este arquivo é renomeado e atualizado a cada versão (seções numeradas abaixo, da mais antiga à mais nova).
+> **Versão atual do sistema: Restaurante-desktop 1.5.4 (núcleo 2.32.8)** — este arquivo é renomeado e atualizado a cada versão (seções numeradas abaixo, da mais antiga à mais nova).
 
 # Restaurante Desktop — Windows e Linux
 
@@ -66,7 +66,7 @@ Nada é assinado digitalmente: o Windows pode mostrar o aviso "editor desconheci
 - Ao baixar, a conexão é HTTPS direto do GitHub oficial da Cloudflare; o antivírus do Windows pode pedir confirmação na primeira execução do cloudflared.
 - Núcleo 2.31.0.
 
-### 8. v1.5.3 — Núcleo 2.32.8 (impressão A4, recibo em formato de nota, revisão LGPD/CDC)
+### 8. v1.5.4 — Núcleo 2.32.8 (impressão A4, recibo em formato de nota, revisão LGPD/CDC)
 - **Comanda e recibo:** campo "Imprimir em" — **Cupom** (padrão) ou **A4**; cadastro de impressoras A4 em Impressoras. No Windows/Linux a folha A4 sai pela janela de impressão do sistema, onde você escolhe a impressora.
 - **Recibo A4 em formato de nota** (sem valor fiscal), com **QR Pix** enquanto aguarda pagamento e **várias páginas** quando necessário.
 - **Termos, Privacidade, Reembolso e Créditos**, aceite registrado, "Privacidade e meus dados", senhas com hash e retenção automática. Detalhes em `CONFORMIDADE-LGPD-CDC.md` do app Android (mesmo núcleo).
@@ -81,29 +81,32 @@ Nada é assinado digitalmente: o Windows pode mostrar o aviso "editor desconheci
 - Núcleo 2.32.8: recibo simples com CPF/CNPJ preenchidos e cidade/UF pelo GPS.
 - Núcleo 2.32.8: recibo simples busca CPF/CNPJ só nos cadastros (sem campo de preenchimento na tela).
 
-## Versão 1.5.3
+## Versão 1.5.4
 - Núcleo 2.32.9: chat do suporte com novas seções (layouts de impressão, recibo A4/simples, Empresa, Pendências, privacidade).
 
-## Versão 1.5.3
+## Versão 1.5.4
 - Núcleo 2.32.10: interruptores para habilitar a impressão A4, Nota (NF) e Recibo simples.
 
-## Versão 1.5.3
+## Versão 1.5.4
 - Núcleo 2.32.11: removidos todos os trechos sobre IA (Créditos, Termos e Privacidade).
 
-## Versão 1.5.3
+## Versão 1.5.4
 - Núcleo 2.33.0: assinatura recorrente no cartão (Mercado Pago) com cancelamento no app; recurso liga quando o endereço do Servidor Assinatura é configurado (`COMANDAS_ASSINATURAS_URL` ou `data/assinaturas_url.txt`).
 
-## Versão 1.5.3
+## Versão 1.5.4
 - Núcleo 2.33.1: assinatura no cartão envia o nome do estabelecimento ao Servidor Assinatura.
 
-## Versão 1.5.3
+## Versão 1.5.4
 - Núcleo 2.34.0: plano Vitalício (licença sem vencimento).
 
-## Versão 1.5.3
+## Versão 1.5.4
 - Núcleo 2.34.1: removida a frase de atualizações do plano Vitalício.
 
-## Versão 1.5.3
+## Versão 1.5.4
 - Núcleo 2.34.2: frase de segurança do Vitalício ("Atualizações e suporte enquanto o app for mantido") no cartão, na tela pós-compra, nos Termos e no suporte.
 
-## Versão 1.5.3
+## Versão 1.5.4
 - Núcleo 2.34.3: definição de Suporte (sem alterações no app; análise em 15 a 30 dias) e nova seção no chat sobre como pedir alterações com print.
+
+## Guia completo no chat de suporte (1.5.4)
+Núcleo sincronizado com o Restaurante-app 2.34.4: ~48 respostas novas no chat (cada opção de Ajustes Gerais e tela a tela).
